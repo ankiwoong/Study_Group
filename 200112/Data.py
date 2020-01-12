@@ -1,3 +1,5 @@
+# 성적 리스트
+# Sample Data List
 # 2차원 성적 리스트
 grade_list = [  # 국 영 수 과
     [98, None, 68, 64],             # 노진구
