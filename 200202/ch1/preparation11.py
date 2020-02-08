@@ -10,4 +10,4 @@ df = DataFrame(grade_dic, index=['노진구', '이슬이', '비실이', '퉁퉁�
 all_index = df.query('국어 < 50 or 영어 < 40')
 
 # 출력
-print_df(all_index5)
+print_df(all_index)
