@@ -4,6 +4,6 @@
 매주 주말 스터디 모임
 ```
 ```
-1차 주제 : Python WEB Crawling [ 종료 ]
-2차 주제 : Ptython Pandas [ 진행중 ]
+1차 주제 : Python WEB Crawling [ 19.10.09 ~ 20.01.05 종료 ]
+2차 주제 : Ptython Pandas [ 20.01.12 ~ 진행중 ]
 ```
