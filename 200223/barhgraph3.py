@@ -20,27 +20,27 @@ plt.rcParams["figure.figsize"] = (12, 8)           # 그래프 사이즈
 plt.figure()
 
 # 좌표 배열 생성(0 ~ 8)
-x = np.arange(len(label))
-# print(x)
+y = np.arange(len(label))
+# print(y)
 
 # x축 좌표와 굵기를 설정
-plt.bar(x-0.2, car_vs_people, label='차 대 사람', width=0.4, color='#ff6600')
-plt.bar(x+0.2, car_vs_car, label='차 대 차', width=0.4, color='#0066ff')
+plt.barh(y-0.2, car_vs_people, label='차 대 사람', height=0.4, color='#ff6600')
+plt.barh(y+0.2, car_vs_car, label='차 대 차', height=0.4, color='#0066ff')
 
-# x축 라벨 별도 지정
-plt.xticks(x, label)
+# y축 라벨 별도 지정
+plt.yticks(y, label)
 
 # 범주 표시
 plt.legend()
 
 # x축 라벨
-plt.xlabel('년도')
+plt.xlabel('교통사고 수')
 
 # y축 라벨
-plt.ylabel('교통사고 수')
+plt.ylabel('년도')
 
-# y축 범위
-plt.ylim(0, 34000)
+# x축 범위
+plt.xlim(0, 34000)
 
 # 그래프 제목
 plt.title('2005년 ~ 2017년 유형별 교통 사고 현황')
