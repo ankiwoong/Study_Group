@@ -35,7 +35,7 @@ df['연비테스트'] = np.where((df['도시연비'] + df['고속도로연비'])
 # 각 값별로 수량을 카운트하여 새로운 데이터 프레임 생성
 count = df['연비테스트'].value_counts()
 count_df = DataFrame(count)
-# print_df(count_df)
+print_df(count_df)
 
 # ---------------------------------------------------------
 # 데이터 정제
