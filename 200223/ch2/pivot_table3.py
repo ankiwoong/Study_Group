@@ -44,35 +44,33 @@ plt.rcParams["font.family"] = 'NanumGothic'         # 한글 폰트
 plt.rcParams["font.size"] = 12                      # 폰트 사이즈
 plt.rcParams["figure.figsize"] = (12, 8)           # 그래프 사이즈
 '''
-상자 수염 그림
+선 그래프
 '''
+# x 축 배열 생성
+x = np.arange(len(year))
+# print(x)
 '''
-case 1
 특정 컬럼 생성
 '''
+# df['차 대 사람'].plot()
 # plt.grid()
-# df.boxplot('차 대 사람')
-# plt.title('차 대 사람 교통사고 변화율')
-# plt.ylabel('교통사고 수')
+# plt.legend()
+# plt.title('차 대 사람 교통사고 변화')
+# plt.ylabel('교통사고 율')
+# plt.xticks(x, year)
+# plt.xlim(0, 12)
 # plt.show()
 # plt.close()
+
 '''
-case 2
-복수 컬럼 생성
-'''
-# plt.grid()
-# df.boxplot(['차 대 사람', '차 대 차'])
-# plt.title('차 대 사람 / 차 대 차 교통사고 변화율')
-# plt.ylabel('교통사고 수')
-# plt.show()
-# plt.close()
-'''
-case 3
 전체 컬럼 생성
 '''
+df.plot()
 plt.grid()
-df.boxplot()
+plt.legend()
 plt.title('2005년 ~ 2017년 유형별 교통 사고 현황')
 plt.ylabel('교통사고 수')
+plt.xticks(x, year)
+plt.xlim(0, 12)
 plt.show()
 plt.close()
