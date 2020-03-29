@@ -132,10 +132,10 @@ movies['us_grossMillions'] = pd.to_numeric(
 # print(movies['us_grossMillions'])
 
 # 전처리 후 DataFrame 확인
-# print(movies)
+print(movies)
 
 # 전처리 후 DataFrame 타입 확인
-# print(movies.dtypes)
+print(movies.dtypes)
 
 # CSV 저장
 movies.to_csv('movies.csv')
