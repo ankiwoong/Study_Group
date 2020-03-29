@@ -40,7 +40,7 @@ years = 출시 연도
 time = 상영 시간
 imdb_ratings = 평점
 metascores = 메타스코어
-votes = 개표수
+votes = 투표
 us_gross = 총 수입
 '''
 titles = []
@@ -69,9 +69,9 @@ for container in movie_div:
     # 메타스코어 추출
     metascore = container.find('span', class_='metascore').text
     metascores.append(metascore.strip())
-    # 개표수 추출
+    # 투표 추출
     vote = container.find('span', attrs={'name': 'nv'})['data-value']
-    votes.append(int(vote))
+    votes.append(vote)
     # 총 수입 추출
     gross = container.find('span', attrs={'name': 'nv'}).findNext(
         'span').findNext('span').findNext('span').text
@@ -82,10 +82,60 @@ for container in movie_div:
         us_gross.append(np.nan)
 
 # 추출 데이터 출력
-print(titles)
-print(years)
-print(time)
-print(imdb_ratings)
-print(metascores)
-print(votes)
-print(us_gross)
+# print(titles)
+# print(years)
+# print(time)
+# print(imdb_ratings)
+# print(metascores)
+# print(votes)
+# print(us_gross)
+
+# DataFrame 생성
+movies = pd.DataFrame({
+    'movie': titles,
+    'year': years,
+    'timeMin': time,
+    'imdb': imdb_ratings,
+    'metascore': metascores,
+    'votes': votes,
+    'us_grossMillions': us_gross,
+})
+
+# DataFrame 확인
+# print(movies)
+
+# DataFrame 타입 확인
+# print(movies.dtypes)
+
+# 전처리 과정 - 년도
+movies['year'] = movies['year'].str.extract('(\d+)').astype(int)
+# print(movies['year'])
+
+# 전처리 과정 - 상영 시간
+movies['timeMin'] = movies['timeMin'].str.extract('(\d+)').astype(int)
+# print(movies['timeMin'])
+
+# 전처리 과정 - 메타스코어
+movies['metascore'] = movies['metascore'].astype(int)
+# print(movies['metascore'])
+
+# 전처리 과정 - 투표
+movies['votes'] = movies['votes'].astype(int)
+# print(movies['votes'])
+
+# 전처리 과정 - 총 수입
+movies['us_grossMillions'] = movies['us_grossMillions'].astype(str)
+movies['us_grossMillions'] = movies['us_grossMillions'].map(
+    lambda x: x.lstrip('$').rstrip('M'))
+movies['us_grossMillions'] = pd.to_numeric(
+    movies['us_grossMillions'], errors='coerce')
+# print(movies['us_grossMillions'])
+
+# 전처리 후 DataFrame 확인
+# print(movies)
+
+# 전처리 후 DataFrame 타입 확인
+# print(movies.dtypes)
+
+# CSV 저장
+movies.to_csv('movies.csv')
