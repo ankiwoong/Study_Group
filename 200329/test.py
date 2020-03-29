@@ -1,3 +1,4 @@
+
 '''
 인터넷 영화 데이터베이스(https://www.imdb.com/)
 - https://www.imdb.com/search/title/?groups=top_1000&ref_=adv_prv
@@ -68,19 +69,14 @@ for container in movie_div:
     imdb_ratings.append(imdb)
     # 메타스코어 추출
     metascore = container.find('span', class_='metascore').text
-    if len(metascore) > 1:
-        metascores.append(metascore.strip())
-    else:
-        metascore.append(np.nan)
+    metascores.append(metascore.strip())
     # 투표 추출
     vote = container.find('span', attrs={'name': 'nv'})['data-value']
-    if len(vote) > 1:
-        votes.append(vote)
-    else:
-        votes.append(np.nan)
+    votes.append(vote)
     # 총 수입 추출
     gross = container.find('span', attrs={'name': 'nv'}).findNext(
         'span').findNext('span').findNext('span').text
+
     if len(gross) > 3:
         us_gross.append(gross)
     else:
@@ -96,7 +92,7 @@ for container in movie_div:
 # print(us_gross)
 
 # DataFrame 생성
-df = pd.DataFrame({
+movies = pd.DataFrame({
     'movie': titles,
     'year': years,
     'timeMin': time,
@@ -107,40 +103,40 @@ df = pd.DataFrame({
 })
 
 # DataFrame 확인
-# print(df)
+# print(movies)
 
 # DataFrame 타입 확인
-# print(df.dtypes)
+# print(movies.dtypes)
 
 # 전처리 과정 - 년도
-df['year'] = df['year'].str.extract('(\d+)').astype(int)
-# print(df['year'])
+movies['year'] = movies['year'].str.extract('(\d+)').astype(int)
+# print(movies['year'])
 
 # 전처리 과정 - 상영 시간
-df['timeMin'] = df['timeMin'].str.extract('(\d+)').astype(int)
-# print(df['timeMin'])
+movies['timeMin'] = movies['timeMin'].str.extract('(\d+)').astype(int)
+# print(movies['timeMin'])
 
 # 전처리 과정 - 메타스코어
-df['metascore'] = df['metascore'].astype(int)
-# print(df['metascore'])
+movies['metascore'] = movies['metascore'].astype(int)
+# print(movies['metascore'])
 
 # 전처리 과정 - 투표
-df['votes'] = df['votes'].astype(int)
-# print(df['votes'])
+movies['votes'] = movies['votes'].astype(int)
+# print(movies['votes'])
 
 # 전처리 과정 - 총 수입
-df['us_grossMillions'] = df['us_grossMillions'].astype(str)
-df['us_grossMillions'] = df['us_grossMillions'].map(
+movies['us_grossMillions'] = movies['us_grossMillions'].astype(str)
+movies['us_grossMillions'] = movies['us_grossMillions'].map(
     lambda x: x.lstrip('$').rstrip('M'))
-df['us_grossMillions'] = pd.to_numeric(
-    df['us_grossMillions'], errors='coerce')
-# print(df['us_grossMillions'])
+movies['us_grossMillions'] = pd.to_numeric(
+    movies['us_grossMillions'], errors='coerce')
+# print(movies['us_grossMillions'])
 
 # 전처리 후 DataFrame 확인
-# print(df)
+print(movies)
 
 # 전처리 후 DataFrame 타입 확인
-# print(df.dtypes)
+print(movies.dtypes)
 
 # CSV 저장
-df.to_csv('movie.csv')
+movies.to_csv('movies.csv')
