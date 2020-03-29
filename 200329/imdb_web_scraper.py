@@ -13,36 +13,15 @@ import pandas as pd
 import numpy as np
 from fake_useragent import UserAgent
 
+from time import sleep
+from random import randint
+
 
 # usaragnt 생성 및 header 정보 생성
 ua = UserAgent(verify_ssl=False)
 headers = {'User-Agent': ua.random}
 
-# 사이트
-url = 'https://www.imdb.com/search/title/?groups=top_1000&ref_=adv_prv'
-
-# url 응답 요청
-req = requests.get(url, headers=headers)
-
-# 응답 값 확인
-# print(req)
-
-# HTML 구문 확인
-soup = BeautifulSoup(req.text, "html.parser")
-
-# 확인(soup.prettify() - 트리형식으로 출력)
-# print(soup.prettify())
-
 # 데이터 추출 리스트 생성
-'''
-titles = 제목
-years = 출시 연도
-time = 상영 시간
-imdb_ratings = 평점
-metascores = 메타스코어
-votes = 투표
-us_gross = 총 수입
-'''
 titles = []
 years = []
 time = []
@@ -51,96 +30,92 @@ metascores = []
 votes = []
 us_gross = []
 
-movie_div = soup.find_all('div', class_='lister-item mode-advanced')
+# 페이지 생성
+# 시작 끝 간격
+pages = np.arange(1, 1001, 50)
 
-for container in movie_div:
-    # 제목 추출
-    name = container.h3.a.text
-    titles.append(name)
-    # 출시 년도 추출
-    year = container.h3.find('span', class_='lister-item-year').text
-    years.append(year)
-    # 상영 시간 추출
-    runtime = container.find('span', class_='runtime').text
-    time.append(runtime)
-    # 평점 추출
-    imdb = float(container.find('strong').text)
-    imdb_ratings.append(imdb)
-    # 메타스코어 추출
-    metascore = container.find('span', class_='metascore').text
-    if len(metascore) > 1:
-        metascores.append(metascore.strip())
-    else:
-        metascore.append(np.nan)
-    # 투표 추출
-    vote = container.find('span', attrs={'name': 'nv'})['data-value']
-    if len(vote) > 1:
+for page in pages:
+    # 페이지 파라미터 조합
+    page = requests.get("https://www.imdb.com/search/title/?groups=top_1000&start=" +
+                        str(page) + "&ref_=adv_nxt", headers=headers)
+    # HTML 구문 확인
+    soup = BeautifulSoup(page.text, 'html.parser')
+    movie_div = soup.find_all('div', class_='lister-item mode-advanced')
+    # 크롤링 속도 제어
+    # 2 ~ 10초 대기 시간 지정
+    sleep(randint(2, 10))
+
+    for container in movie_div:
+        # 영화 제목 추출
+        name = container.h3.a.text
+        titles.append(name)
+        # 개봉 년도 추출
+        year = container.h3.find('span', class_='lister-item-year').text
+        years.append(year)
+        # 상영 시간 추출
+        runtime = container.p.find('span', class_='runtime') if container.p.find(
+            'span', class_='runtime') else ''
+        time.append(runtime)
+        # 평점 추출
+        imdb = float(container.strong.text)
+        imdb_ratings.append(imdb)
+        # 메타스코어 추출
+        m_score = container.find('span', class_='metascore').text if container.find(
+            'span', class_='metascore') else ''
+        metascores.append(m_score)
+        # 투표 / 총 매출 추출을 위한 데이터
+        nv = container.find_all('span', attrs={'name': 'nv'})
+        # 투표 점수 추출
+        vote = nv[0].text
         votes.append(vote)
-    else:
-        votes.append(np.nan)
-    # 총 수입 추출
-    gross = container.find('span', attrs={'name': 'nv'}).findNext(
-        'span').findNext('span').findNext('span').text
-    if len(gross) > 3:
-        us_gross.append(gross)
-    else:
-        us_gross.append(np.nan)
-
-# 추출 데이터 출력
-# print(titles)
-# print(years)
-# print(time)
-# print(imdb_ratings)
-# print(metascores)
-# print(votes)
-# print(us_gross)
+        # 총 매출 추출
+        grosses = nv[1].text if len(nv) > 1 else ''
+        us_gross.append(grosses)
 
 # DataFrame 생성
-df = pd.DataFrame({
+movies = pd.DataFrame({
     'movie': titles,
     'year': years,
-    'timeMin': time,
     'imdb': imdb_ratings,
     'metascore': metascores,
     'votes': votes,
     'us_grossMillions': us_gross,
+    'timeMin': time
 })
 
-# DataFrame 확인
-# print(df)
+# 데이터 전처리 과정 - , 삭제 > 정수
+movies['votes'] = movies['votes'].str.replace(',', '').astype(int)
+# 데이터 전처리 과정 - ( ) 삭제 > 정수
+movies['year'] = movies['year'].str.extract('(\d+)').astype(int)
+# 데이터 전처리 과정 - 문자 > 특수문자 제거 > 정수
+movies['timeMin'] = movies['timeMin'].astype(str)
+movies['timeMin'] = movies['timeMin'].str.extract('(\d+)').astype(int)
+# 데이터 전처리 과정 - 특수문자 제거
+movies['metascore'] = movies['metascore'].str.extract('(\d+)')
+movies['metascore'] = pd.to_numeric(movies['metascore'], errors='coerce')
+# 데이터 전처리 과정 - $ M 제거
+movies['us_grossMillions'] = movies['us_grossMillions'].map(
+    lambda x: x.lstrip('$').rstrip('M'))
+movies['us_grossMillions'] = pd.to_numeric(
+    movies['us_grossMillions'], errors='coerce')
+
+
+# 전처리 과정 후 DataFrame 확인
+# print(movies.head())
+# print(movies.tail())
 
 # DataFrame 타입 확인
-# print(df.dtypes)
+# print(movies.dtypes)
 
-# 전처리 과정 - 년도
-df['year'] = df['year'].str.extract('(\d+)').astype(int)
-# print(df['year'])
+# 결측치 확인
+# print(movies.isnull().sum())
 
-# 전처리 과정 - 상영 시간
-df['timeMin'] = df['timeMin'].str.extract('(\d+)').astype(int)
-# print(df['timeMin'])
+# 결측치 데이터 추가
+movies.metascore = movies.metascore.fillna("None Given")
+movies.us_grossMillions = movies.us_grossMillions.fillna("")
 
-# 전처리 과정 - 메타스코어
-df['metascore'] = df['metascore'].astype(int)
-# print(df['metascore'])
+# print(movies['metascore'])
+# print(movies['us_grossMillions'])
 
-# 전처리 과정 - 투표
-df['votes'] = df['votes'].astype(int)
-# print(df['votes'])
-
-# 전처리 과정 - 총 수입
-df['us_grossMillions'] = df['us_grossMillions'].astype(str)
-df['us_grossMillions'] = df['us_grossMillions'].map(
-    lambda x: x.lstrip('$').rstrip('M'))
-df['us_grossMillions'] = pd.to_numeric(
-    df['us_grossMillions'], errors='coerce')
-# print(df['us_grossMillions'])
-
-# 전처리 후 DataFrame 확인
-# print(df)
-
-# 전처리 후 DataFrame 타입 확인
-# print(df.dtypes)
-
-# CSV 저장
-df.to_csv('movie.csv')
+# CSV 파일 생성
+movies.to_csv('movies.csv')
