@@ -1,3 +1,11 @@
+from random import randint
+from time import sleep
+from fake_useragent import UserAgent
+import numpy as np
+import pandas as pd
+from bs4 import BeautifulSoup
+from requests import get
+import requests
 '''
 인터넷 영화 데이터베이스(https://www.imdb.com/)
 - https://www.imdb.com/search/title/?groups=top_1000&ref_=adv_prv
@@ -5,16 +13,6 @@
 groups=top_1000 : 페이지의 내용
 ref_= : 다음 페이지(adv_nxt) 또는 이전 페이지(adv_prv)의 매개 변수 지정
 '''
-
-import requests
-from requests import get
-from bs4 import BeautifulSoup
-import pandas as pd
-import numpy as np
-from fake_useragent import UserAgent
-
-from time import sleep
-from random import randint
 
 
 # usaragnt 생성 및 header 정보 생성
