@@ -1,0 +1,5 @@
+INSERT INTO `topic` (`
+id`,
+`title
+`, `description`, `author`, `created`) VALUES
+(1, 'About JavaScript', '<h3>Desctiption</h3>\r\n<p>JavaScript  is a dynamic computer programming language. It is most commonly used as part of web browsers, whose implementations allow client-side scripts to interact with the user, control the browser, communicate asynchronously, and alter the document content that is displayed.</p>\r\n<p>\r\nDespite some naming, syntactic, and standard library similarities, JavaScript and Java are otherwise unrelated and have very different semantics. The syntax of JavaScript is actually derived from C, while the semantics and design are influenced by the Self and Scheme programming languages.\r\n</p>\r\n<h3>See Also</h3>\r\n<ul>\r\n  <li><a href="http://en.wikipedia.org/wiki/Dynamic_HTML">Dynamic HTML and Ajax (programming)</a></li>\r\n  <li><a href="http://en.wikipedia.org/wiki/Web_interoperability">Web interoperability</a></li>\r\n  <li><a href="http://en.wikipedia.org/wiki/Web_accessibility">Web accessibility</a></li>\r\n</ul>\r\n', 'egoing', '2015-03-31 12:14:00');
