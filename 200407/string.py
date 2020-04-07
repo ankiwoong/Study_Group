@@ -41,3 +41,26 @@ print(i)
 # 7. "
 j = "\"hello world\""
 print(j)
+print('-' * 30)
+
+# type convert
+k = str(10.2)
+print(k)
+print(type(k))
+print('-' * 30)
+
+# indexing
+l = 'hello world'
+print(l[0])
+print('-' * 30)
+
+# slicing
+print(l[0:5])
+print(l[-5:])
+print(l[1:-1])
+print(l[:-5])
+print('-' * 30)
+
+# len
+print(len(l))
+print('-' * 30)
