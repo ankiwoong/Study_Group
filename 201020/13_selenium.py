@@ -17,3 +17,14 @@ browser.back()
 elem = browser.find_element_by_id("query")
 elem.send_keys("오늘코딩내일디버깅")
 elem.send_keys(Keys.ENTER)
+
+elem = browser.find_elements_by_tag_name("a")
+for e in elem:
+    print(e.get_attribute("href"))
+
+browser.get("https://www.daum.net")
+elem = browser.find_element_by_name("q")
+elem.send_keys("오늘코딩내일디버깅")
+elem = browser.find_element_by_xpath('//*[@id="daumSearch"]/fieldset/div/div/button[2]')
+elem.click()
+browser.quit()
