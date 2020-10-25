@@ -48,19 +48,28 @@ print(len(movies))
 
 for movie in movies:
     title = movie.find("div", attrs={"class": "WsMG1c nnK0zc"}).get_text()
-    print(title)
+    # print(title)
 
     # 할인 전 가격
     original_price = movie.find("span", attrs={"class": "SUZt4c djCuy"})
+
     if original_price:
         original_price = original_price.get_text()
     else:
-        print(title, " <할인되지 않은 영화 제외")
+        # print(title, " <할인되지 않은 영화 제외>")
         continue
 
     # 할인 된 가격
-    price = movie.find("span", attrs={"class": "VfPpfd ZdBevf i5DZme"})
+    price = movie.find("span", attrs={"class": "VfPpfd ZdBevf i5DZme"}).get_text()
 
     # 링크
     link = movie.find("a", attrs={"class": "JC71ub"})["href"]
     # 올바른 링크 : https://play.google.com + link
+
+    print(f"제목 : {title}")
+    print(f"할인 전 금액 : {original_price}")
+    print(f"할인 후 금액 : {price}")
+    print("링크 : ", "https://play.google.com" + link)
+    print("-" * 100)
+
+browser.quit()
