@@ -16,3 +16,6 @@ data2 = data1.findAll("dd")
 
 fine_dust = data2[0].find("span", {"class": "num"}).text
 print(fine_dust)
+
+ultra_fine_dust = data2[1].find("span", {"class": "num"}).text
+print(ultra_fine_dust)
