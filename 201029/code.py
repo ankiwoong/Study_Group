@@ -15,9 +15,13 @@ data1 = soup.find("div", {"class": "col_inner"})
 data2 = data1.findAll("a", {"class": "title"})
 # pprint(data2)
 
-# 텍스트만 추출
-title_list = []
-for t in data2:
-    title_list.append(t.text)
+# 텍스트만 추출 1
+# title_list = []
+# for t in data2:
+#     title_list.append(t.text)
+#
+# pprint(title_list)
 
+# 텍스트만 추출 2
+title_list = [t.text for t in data2]
 pprint(title_list)
