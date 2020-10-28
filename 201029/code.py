@@ -13,4 +13,11 @@ data1 = soup.find("div", {"class": "col_inner"})
 
 # 제목 포함영역 추출하기
 data2 = data1.findAll("a", {"class": "title"})
-pprint(data2)
+# pprint(data2)
+
+# 텍스트만 추출
+title_list = []
+for t in data2:
+    title_list.append(t.text)
+
+pprint(title_list)
