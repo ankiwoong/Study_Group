@@ -3,4 +3,7 @@ from pprint import pprint
 import requests
 
 html = requests.get("https://search.naver.com/search.naver?query=날씨")
-pprint(html.text)
+# pprint(html.text)
+
+soup = bs(html.text, "html.parser")
+pprint(soup)
