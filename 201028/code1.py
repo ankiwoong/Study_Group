@@ -9,4 +9,7 @@ soup = bs(html.text, "html.parser")
 # pprint(soup)
 
 data1 = soup.find("div", {"class": "detail_box"})
-pprint(data1)
+# pprint(data1)
+
+data2 = data1.findAll("dd")
+pprint(data2)
