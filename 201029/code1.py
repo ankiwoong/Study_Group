@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from pprint import pprint
 import requests
+from urllib.request import urlretrieve  # 추가
 
 # 웹 페이지를 열고 소스코드를 읽어오는 작업
 html = requests.get("http://comic.naver.com/webtoon/weekday.nhn")
@@ -23,4 +24,5 @@ for li in li_list:
     img = li.find("img")
     title = img["title"]
     img_src = img["src"]
-    print(title, img_src)
+    # print(title,img_src)
+    urlretrieve(img_src, title + ".jpg")  # 주소, 파일경로+파일명+확장자
