@@ -16,5 +16,11 @@ li_list = []
 for data1 in data1_list:
     # 제목+썸내일 영역 추출
     li_list.extend(data1.findAll("li"))  # 해당 부분을 찾아 li_list와 병합
+# pprint(li_list)
 
-pprint(li_list)
+# 각각 썸네일과 제목 추출하기
+for li in li_list:
+    img = li.find("img")
+    title = img["title"]
+    img_src = img["src"]
+    print(title, img_src)
