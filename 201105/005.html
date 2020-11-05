@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        tr,
+        td,
+        th {
+            border: solid 1px black;
+            border-collapse: collapse;
+        }
+
+        /* 주석 */
+    </style>
+</head>
+
+<body>
+    <!-- table>(tr>td*5)*3 -->
+    <!-- 주석 -->
+    <table>
+        <thead>
+            <tr>
+                <th>순번</th>
+                <th>책이름</th>
+                <th>가격</th>
+                <th>판매량</th>
+                <th>판매액</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Notion</td>
+                <td>7000</td>
+                <td rowspan="2">1000</td>
+                <td>7,000,000</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Python</td>
+                <td>5000</td>
+                <td>5,000,000</td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="4">총액</td>
+                <td>12,000,000</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>
