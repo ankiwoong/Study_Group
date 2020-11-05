@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .one {
+            font-size: 32px;
+        }
+
+        .two {
+            /* font-size: 2em; */
+            /* em : 내 부모 단위에 배수 단위 */
+            /* body tag는 16px이므로 2em이면 32px가 된다  */
+            /* 하지만 div가 감싸지면 부모가 div가 되므로 div에 속성에 배수단위로 된다 */
+            /* 즉, 고정 단위로 할려면 rem을 사용하여야 된다 */
+            font-size: 2rem;
+            /* rem : 내 가장 부모 단위에 배수 단위(고정) */
+            /* body tag는 16px이므로 2rem이면 32px가 된다 */
+        }
+
+        .three {
+            font-weight: normal;
+        }
+
+        div {
+            font-size: 8px;
+        }
+
+        .box-one {
+            /* width: 50%; */
+            /* % : 내 부모 width에 % */
+            width: 50vw;
+            /* vw(view width) : 내가 보이는 화면에 전체 넓이에 % 할당 */
+            height: 30vh;
+            /* 높이는 %로 사용 못함 */
+            /* vh(view height) : 내가 보이는 화면에 전체 높이에 % 할당 */
+            background-color: green;
+        }
+
+        .box-two {
+            width: 200px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- p{hello world}*2 -->
+    <p class="one">hello world</p>
+    <div>
+        <p class="two">hello world</p>
+    </div>
+    <h1 class="three">hello world</h1>
+    <div class="box-one"></div>
+    <div class="box-two"></div>
+</body>
+
+</html>
