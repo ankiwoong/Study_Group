@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        div {
+        /* div {
             background-color: pink;
             padding: 10px;
             margin-top: 50;
@@ -28,16 +28,56 @@
             background-color: greenyellow;
             padding: 10px;
             margin: 40px;
+        } */
+
+        table {
+            border-bottom: 1px double black;
+            border-top: 1px double black;
+            border-collapse: collapse;
+        }
+
+        table>thead>tr>th {
+            border: 1px solid gray;
+        }
+
+        table>tbody>tr>td {
+            border: 1px solid gray;
+            background-color: pink;
         }
     </style>
 </head>
 
 <body>
-    <div>
+    <!-- <div>
         <span>안기웅</span>
         <span>김유림</span>
         <span>안지아</span>
-    </div>
+    </div> -->
+
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>성별</th>
+                <th>나이</th>
+                <th>키</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>안기웅</td>
+                <td>남</td>
+                <td>35</td>
+                <td>170</td>
+            </tr>
+            <tr>
+                <td>김유림</td>
+                <td>여</td>
+                <td>30</td>
+                <td>150</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 </html>
