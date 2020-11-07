@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .blockTag {
+            background-color: yellowgreen;
+        }
+
+        .blockTag>div {
+            background-color: red;
+            border: 1px solid black;
+        }
+
+        .inlineTag span {
+            background-color: skyblue;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blockTag">
+        <div>block 1</div>
+        <div>block 2</div>
+        <div>block 3</div>
+    </div>
+
+    <div class="inlineTag">
+        <span>inline 1</span>
+        <span>inline 2</span>
+        <span>inline 3</span>
+    </div>
+</body>
+
+</html>
