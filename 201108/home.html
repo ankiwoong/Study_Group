@@ -39,7 +39,7 @@
             list-style: none;
         }
 
-        table {
+        /* table {
             border-bottom: 1px double black;
             border-top: 1px double black;
         }
@@ -51,6 +51,55 @@
         table>tbody>tr>td {
             border: 1px solid gray;
             background-color: pink;
+        } */
+        .blankPosition {
+            width: 100%;
+            height: 300px;
+            background-color: gray;
+        }
+
+        .relativePosition {
+            width: 100%;
+            height: 200px;
+            background-color: pink;
+        }
+
+        .relativePosition>div {
+            padding: 50px;
+            background-color: red;
+            margin-top: 10px;
+        }
+
+        .relativePosition>div:first-child {
+            position: relative;
+            top: -100px
+        }
+
+        .absolutePosition {
+            width: 100%;
+            height: 500px;
+            background-color: violet;
+        }
+
+        .absolutePosition>div {
+            position: absolute;
+            background-color: royalblue;
+            right: 0px;
+            bottom: 0px;
+            width: 100px;
+            height: 200px;
+        }
+
+        .fixedPosition {
+            width: 100%;
+            height: 100px;
+            background-color: skyblue;
+        }
+
+        .fixedPosition>div {
+            position: fixed;
+            width: 100px;
+            height: 200px;
         }
     </style>
 </head>
@@ -61,8 +110,8 @@
         <span>김유림</span>
         <span>안지아</span>
     </div> -->
-    <a href="https://www.naver.com">네이버 바로가기</a>
-    <table>
+    <!-- <a href="https://www.naver.com">네이버 바로가기</a> -->
+    <!-- <table>
         <thead>
             <tr>
                 <th>이름</th>
@@ -85,7 +134,21 @@
                 <td>150</td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
+
+    <div class="blankPosition">
+        <div>blank</div>
+    </div>
+    <div class="relativePosition">
+        <div>relative</div>
+        <div>relative</div>
+    </div>
+    <div class="absolutePosition">
+        <div>absolute</div>
+    </div>
+    <div class="fixedPosition">
+        <div>fixed</div>
+    </div>
 </body>
 
 </html>
