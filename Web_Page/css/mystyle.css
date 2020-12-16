@@ -79,3 +79,12 @@ aside#left {
 #left ul li#active {
   background: #d40203;
 }
+
+#main {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #464646;
+  overflow: hidden;
+  float: left;
+  width: 430px;
+}
