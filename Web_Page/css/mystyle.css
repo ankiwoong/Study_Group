@@ -40,3 +40,42 @@ nav ul li a {
 nav ul li a:hover {
   text-decoration: underline;
 }
+
+aside#left {
+  width: 175px;
+  margin-top: 20px;
+  float: left;
+}
+
+#left h4 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+#left ul {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  color: #fff;
+  list-style: none;
+  text-indent: 15px;
+}
+
+#left ul li {
+  background: #3f3f3f;
+  line-height: 28px;
+  border-bottom: 1px solid #333;
+}
+
+#left ul li a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+}
+
+#left ul li a:hover {
+  background: #d40203;
+}
+
+#left ul li#active {
+  background: #d40203;
+}
