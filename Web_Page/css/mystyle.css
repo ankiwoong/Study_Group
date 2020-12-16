@@ -88,3 +88,10 @@ aside#left {
   float: left;
   width: 430px;
 }
+
+aside#right {
+  padding: 0px;
+  margin-left: 10px;
+  width: 200px;
+  float: left;
+}
