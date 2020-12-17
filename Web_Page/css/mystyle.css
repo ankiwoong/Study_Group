@@ -153,7 +153,7 @@ caption {
   text-align: center;
 }
 
-#line2{
+#line2 {
   border-bottom: 3px double black;
   background-color: burlywood;
 }
@@ -163,28 +163,19 @@ caption {
   text-align: center;
 }
 
-label {
-  margin: auto;
-  display: inline-block;
-}
-
-#page-wrap {
-  width: 500px;
-  height: auto;
-  text-align: center;
-}
-
-input {
-  display: inline-block;
-  width: 160px;
-}
-
-#shop1{
+#shop1 {
   display: block;
   margin: auto;
 }
 
-#show2 > h1, p{
+#show2 > h1,
+p {
   text-align: center;
   padding: 10px;
+}
+
+#page-wrap{
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 10px;
 }
