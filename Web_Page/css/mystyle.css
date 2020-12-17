@@ -176,3 +176,13 @@ input {
   display: inline-block;
   width: 160px;
 }
+
+#shop1{
+  display: block;
+  margin: auto;
+}
+
+#show2 > h1, p{
+  text-align: center;
+  padding: 10px;
+}
