@@ -116,8 +116,8 @@ footer {
 
 img {
   display: block;
-  width: auto;
-  height: 500px;
+  width: 800px;
+  height: auto;
   margin: auto;
 }
 
@@ -133,5 +133,8 @@ caption {
 
 #lggram {
   margin: auto;
+  width: 1000px;
   text-align: center;
+  border-collapse : separate;
+  border-spacing: 10px;
 }
