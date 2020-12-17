@@ -6,9 +6,11 @@
 
 body {
   background-color: #f3f1e9;
+  height: 100%;
 }
 
-a {
+a,
+#back {
   text-decoration: none;
   color: #3f3f3f;
 }
@@ -114,7 +116,7 @@ footer {
   background-repeat: repeat-x;
 }
 
-img {
+#lg {
   display: block;
   width: 800px;
   height: auto;
@@ -135,6 +137,42 @@ caption {
   margin: auto;
   width: 1000px;
   text-align: center;
-  border-collapse : separate;
+  border-collapse: separate;
   border-spacing: 10px;
+}
+
+#back {
+  text-align: center;
+}
+
+#cart {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+#line2{
+  border-bottom: 3px double black;
+  background-color: burlywood;
+}
+
+#center {
+  margin: 20px;
+  text-align: center;
+}
+
+label {
+  margin: auto;
+  display: inline-block;
+}
+
+#page-wrap {
+  width: 500px;
+  height: auto;
+  text-align: center;
+}
+
+input {
+  display: inline-block;
+  width: 160px;
 }

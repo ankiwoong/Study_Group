@@ -1,34 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>쇼핑 카트</title>
-    <style>
-        body {
-            height: 100%;
-            background-color: #F3F1E9;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: center;
-        }
-
-        table caption {
-            color: red;
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="css/mystyle.css">
 </head>
 
 <body>
     <form action="#">
-        <table border="1">
+        <table border="1" id="cart">
             <caption>Shopping Cart</caption>
-            <tr>
+            <tr id="line2">
                 <th>품목</th>
                 <th>가격</th>
                 <th>수량</th>
@@ -75,11 +59,17 @@
                 </td>
             </tr>
         </table>
-        <input type="button" value="계산" />
-        <input type="submit" value="구매" />
-        <input type="reset" value="초기화" />
+
+        <div id="center">
+            <input type="button" value="계산" />
+            <input type="submit" value="구매" />
+            <input type="reset" value="초기화" />
+        </div>
     </form>
-    <a href="index.html">Back to Home</a>
+
+    <div id="back">
+        <a href="index.html">Back to Home</a>
+    </div>
 </body>
 
 </html>
