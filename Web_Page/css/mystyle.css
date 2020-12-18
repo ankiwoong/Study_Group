@@ -174,8 +174,54 @@ p {
   padding: 10px;
 }
 
-#page-wrap{
+#page-wrap {
   margin: 0 auto;
   border-collapse: separate;
   border-spacing: 10px;
+}
+
+.order {
+  border-collapse: separate;
+  border-spacing: 3px;
+  width: 100%;
+  font-size: 15px;
+  padding-top: 20px;
+}
+
+.order > caption {
+  text-align: left;
+  font-size: 20px;
+}
+
+.right-t {
+  text-align: right;
+}
+
+.left-t {
+  text-align: left;
+}
+
+.top-t {
+  border-top: 1px solid gray;
+}
+
+.center-t {
+  text-align: center;
+  margin: 20px;
+}
+
+.font-g {
+  color: green;
+  font-weight: bold;
+  text-align: right;
+}
+
+.font-b{
+  color: blue;
+  font-weight: bold;
+}
+
+.img-s {
+  width: 50px;
+  height: 50px;
 }
