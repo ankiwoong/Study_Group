@@ -1,0 +1,14 @@
+﻿<script>
+    var msg = "";
+    var time = new Date().getHours();
+    if (time < 12) {				// 12시 이전이면
+        msg = "Good Morning";
+    }
+    else if (time < 18) {			// 오후 6시 이전이면
+        msg = "Good Afternoon";
+    }
+    else {						// 그렇지 않으면(오후 6시 이후이면) 
+        msg = "Good evening";
+    }
+    alert(msg);
+</script>
