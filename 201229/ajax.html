@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getFromServer() {
+            var req;
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                req = new XMLHttpRequest();
+            }
+            else {// code for IE6, IE5
+                req = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            req.onreadystatechange = function () {
+                if (req.readyState == 4 && req.status == 200) {
+                    document.getElementById("target").innerHTML = req.responseText;
+                }
+            }
+            req.open("GET", "testfile1.txt", true);
+            req.send();
+        }
+    </script>
+</head>
+
+<body>
+    <div id="target" style="width: 300px; height: 60px; border: solid 1px black;"></div>
+    <button type="button" onclick="getFromServer()">GET DATA</button>
+</body>
+
+</html>
