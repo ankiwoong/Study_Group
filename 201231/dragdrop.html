@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #shopping_cart {
+            width: 450px;
+            height: 100px;
+            padding: 10px;
+            border: 1px dotted red;
+        }
+    </style>
+    <script>
+        function allowDrop(e) {
+            e.preventDefault();
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData("Text", e.target.id);
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            var src = e.dataTransfer.getData("Text");
+            e.target.appendChild(document.getElementById(src));
+        }
+    </script>
+</head>
+
+<body>
+    <p>원하는 물건을 끌어서 옮기세요.</p>
+    <div id="shopping_cart" ondrop="handleDrop(event)" ondragover="allowDrop(event)"></div>
+    <br>
+    <img id="img1" src="tv.png" draggable="true" ondragstart="handleDragStart(event)" width="150" height="100">
+    <img id="img2" src="audio.png" draggable="true" ondragstart="handleDragStart(event)" width="150" height="100">
+    <img id="Img3" src="camera.png" draggable="true" ondragstart="handleDragStart(event)" width="150" height="100">
+</body>
+
+</html>
